@@ -4,7 +4,7 @@ interface MenuItem {
   title: string
   icon: string
   url: string
-  children: Array<{ title: string; url: string }>
+  children: Array<{ index: string; title: string; url: string }>
 }
 
 const isCollapse = ref<boolean>(false)
@@ -23,7 +23,7 @@ const menu = ref<Array<MenuItem>>([
     title: '정보게시판',
     icon: 'Location',
     url: '/',
-    children: [{ title: '문의 게시판', url: '/' }],
+    children: [{ index: '2-1', title: '문의 게시판', url: '/' }],
   },
 ])
 
@@ -52,13 +52,28 @@ const getIconComponent = (icon: string) => {
       </el-icon>
     </div>
 
-    <el-sub-menu v-for="item in menu" :index="item.index">
-      <template #title>
+    <template v-for="item in menu">
+      <el-sub-menu v-if="item.children.length > 0" :index="item.index">
+        <template #title>
+          <el-icon :color="iconColor" :size="iconSize">
+            <component :is="getIconComponent(item.icon)" />
+          </el-icon>
+          <span>{{ item.title }}</span>
+        </template>
+
+        <el-menu-item v-for="child in item.children" :index="child.index">
+          {{ child.title }}
+        </el-menu-item>
+      </el-sub-menu>
+
+      <el-menu-item v-else :index="item.index">
         <el-icon :color="iconColor" :size="iconSize">
           <component :is="getIconComponent(item.icon)" />
         </el-icon>
-        <span>{{ item.title }}</span>
-      </template>
-    </el-sub-menu>
+        <template #title>
+          <span>{{ item.title }}</span>
+        </template>
+      </el-menu-item>
+    </template>
   </el-menu>
 </template>
