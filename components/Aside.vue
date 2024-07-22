@@ -21,7 +21,7 @@ const menu = ref<Array<Menu>>([
   {
     index: '2',
     title: '정보게시판',
-    icon: 'Location',
+    icon: 'DataBoard',
     url: '/',
     children: [
       { index: '2-1', title: '문의 게시판', url: '/' }, 
@@ -33,7 +33,7 @@ const menu = ref<Array<Menu>>([
   {
   index: '3',
     title: '부가서비스',
-    icon: 'Location',
+    icon: 'Service',
     url: '/',
     children: [
       { index: '3-1', title: 'Xp 통화매니저', url: '/' }, 
@@ -47,11 +47,12 @@ const menu = ref<Array<Menu>>([
     index: '4',
     title: '바로가기 메뉴',
     url: '/',
+    icon: 'CopyDocument',
     children: [
-      { index: '4-1', title: '문의 게시판', icon: 'Location',url: '/' }, 
-      { index: '4-2', title: '공지사항 게시판', icon: 'Location',url: '/' }, 
-      { index: '4-3', title: '민원 게시판', icon: 'Location',url: '/' }, 
-      { index: '4-4', title: '개인정보 이력 게시판', icon: 'Location',url: '/' }
+      { index: '4-1', title: 'XpERP', icon: 'Location',url: '/' }, 
+      { index: '4-2', title: '장기수선계획', icon: 'Location',url: '/' }, 
+      { index: '4-3', title: 'Xp 전자결재', icon: 'Location',url: '/' }, 
+      { index: '4-4', title: '관리자 사이트', icon: 'UserFilled',url: '/' }
     ],
   },
 ])
@@ -92,17 +93,7 @@ const getIconComponent = (icon: string) => {
         </template>
 
         <el-menu-item v-for="child in item.children" :index="child.index">
-          {{ child.title }}
-        </el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu v-else-if="item.children.length > 0 && !item.icon" :index="item.index">
-        <template #title>
-          <span>{{ item.title }}</span>
-        </template>
-
-        <el-menu-item v-for="child in item.children" :index="child.index">
-          <el-icon :color="iconColor" :size="iconSize">
+          <el-icon v-if="child.icon" :color="iconColor" :size="iconSize">
             <component :is="getIconComponent(child.icon ?? '')" />
           </el-icon>
           {{ child.title }}
@@ -120,8 +111,5 @@ const getIconComponent = (icon: string) => {
 
       <el-divider v-if="item.index === '3'"/>
     </template>
-
-   
-    
   </el-menu>
 </template>

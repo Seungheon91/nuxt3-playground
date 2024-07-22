@@ -1,15 +1,8 @@
 // assets/styles/layout/_main.scss
 .main {
   background-color: $background-color;
-  padding: 2rem;
+  padding: $main-padding;
   flex-grow: 1;
   overflow: auto;
   height: calc(100vh - $header-height);
-
-  &__content {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
 }

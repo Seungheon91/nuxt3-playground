@@ -1,8 +1,21 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="main__content">
-    <h1>Welcome to the Admin Dashboard</h1>
-    <p>This is the main content area.</p>
+  <div class="main-container">
+    <div class="dashboard-container">
+      <div class="inner">
+        
+      </div>
+      <div class="inner">
+        
+      </div>
+    </div>
+
+    <div class="banner-container">
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+    </div>
   </div>
+  
 </template>
