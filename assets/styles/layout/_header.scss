@@ -23,6 +23,14 @@
 
     &__item {
       margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      span {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+      }
     }
 
     &__link {

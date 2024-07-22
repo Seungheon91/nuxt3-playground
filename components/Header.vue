@@ -5,13 +5,16 @@
     <div class="header__logo">Logo</div>
     <ul class="header__nav">
       <li class="header__nav__item">
-        <a href="#" class="header__nav__link">Home</a>
+        <el-avatar />
+        <span>이력</span>
       </li>
       <li class="header__nav__item">
-        <a href="#" class="header__nav__link">Profile</a>
+        <el-avatar />
+        <span>민원</span>
       </li>
       <li class="header__nav__item">
-        <a href="#" class="header__nav__link">Settings</a>
+        <el-avatar />
+        <span>알림</span>
       </li>
     </ul>
   </header>
