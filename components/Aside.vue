@@ -24,22 +24,26 @@ const menu = ref<Array<Menu>>([
     icon: 'DataBoard',
     url: '/',
     children: [
-      { index: '2-1', title: '문의 게시판', url: '/' }, 
-      { index: '2-2', title: '공지사항 게시판', url: '/' }, 
-      { index: '2-3', title: '민원 게시판', url: '/' }, 
-      { index: '2-4', title: '개인정보 이력 게시판', url: '/' }
+      { index: '2-1', title: '문의 게시판', url: '/boards/inquiry' },
+      { index: '2-2', title: '공지사항 게시판', url: '/boards/notice' },
+      { index: '2-3', title: '민원 게시판', url: '/boards/complain' },
+      {
+        index: '2-4',
+        title: '개인정보 이력 게시판',
+        url: '/boards/personal-history',
+      },
     ],
   },
   {
-  index: '3',
+    index: '3',
     title: '부가서비스',
     icon: 'Service',
     url: '/',
     children: [
-      { index: '3-1', title: 'Xp 통화매니저', url: '/' }, 
-      { index: '3-2', title: 'Xp 보이스', url: '/' }, 
-      { index: '3-3', title: '장기수선계획', url: '/' }, 
-      { index: '3-4', title: 'NEW아파트뱅크', url: '/' }
+      { index: '3-1', title: 'Xp 통화매니저', url: '/' },
+      { index: '3-2', title: 'Xp 보이스', url: '/' },
+      { index: '3-3', title: '장기수선계획', url: '/' },
+      { index: '3-4', title: 'NEW아파트뱅크', url: '/' },
     ],
   },
 
@@ -49,14 +53,13 @@ const menu = ref<Array<Menu>>([
     url: '/',
     icon: 'CopyDocument',
     children: [
-      { index: '4-1', title: 'XpERP', icon: 'Location',url: '/' }, 
-      { index: '4-2', title: '장기수선계획', icon: 'Location',url: '/' }, 
-      { index: '4-3', title: 'Xp 전자결재', icon: 'Location',url: '/' }, 
-      { index: '4-4', title: '관리자 사이트', icon: 'UserFilled',url: '/' }
+      { index: '4-1', title: 'XpERP', icon: 'Location', url: '/' },
+      { index: '4-2', title: '장기수선계획', icon: 'Location', url: '/' },
+      { index: '4-3', title: 'Xp 전자결재', icon: 'Location', url: '/' },
+      { index: '4-4', title: '관리자 사이트', icon: 'UserFilled', url: '/' },
     ],
   },
 ])
-
 
 const getIconComponent = (icon: string) => {
   const iconComponent = resolveComponent(icon)
@@ -84,7 +87,10 @@ const getIconComponent = (icon: string) => {
     </div>
 
     <template v-for="item in menu">
-      <el-sub-menu v-if="item.children.length > 0 && item.icon" :index="item.index">
+      <el-sub-menu
+        v-if="item.children.length > 0 && item.icon"
+        :index="item.index"
+      >
         <template #title>
           <el-icon :color="iconColor" :size="iconSize">
             <component :is="getIconComponent(item.icon ?? '')" />
@@ -92,7 +98,11 @@ const getIconComponent = (icon: string) => {
           <span>{{ item.title }}</span>
         </template>
 
-        <el-menu-item v-for="child in item.children" :index="child.index">
+        <el-menu-item
+          v-for="child in item.children"
+          :index="child.index"
+          @click="$router.push(child.url)"
+        >
           <el-icon v-if="child.icon" :color="iconColor" :size="iconSize">
             <component :is="getIconComponent(child.icon ?? '')" />
           </el-icon>
@@ -100,7 +110,7 @@ const getIconComponent = (icon: string) => {
         </el-menu-item>
       </el-sub-menu>
 
-      <el-menu-item v-else :index="item.index">
+      <el-menu-item v-else :index="item.index" @click="$router.push(item.url)">
         <el-icon :color="iconColor" :size="iconSize">
           <component :is="getIconComponent(item.icon ?? '')" />
         </el-icon>
@@ -109,7 +119,7 @@ const getIconComponent = (icon: string) => {
         </template>
       </el-menu-item>
 
-      <el-divider v-if="item.index === '3'"/>
+      <el-divider v-if="item.index === '3'" />
     </template>
   </el-menu>
 </template>
