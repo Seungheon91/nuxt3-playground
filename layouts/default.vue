@@ -1,27 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="layout">
+  <div class="flex h-full flex-col">
     <Header />
-    <div class="layout__body">
+    <div class="flex flex-1 overflow-hidden">
       <Aside />
-      <main class="main">
+      <main class="">
         <slot />
       </main>
     </div>
   </div>
 </template>
-
-<style scoped>
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.layout__body {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-</style>

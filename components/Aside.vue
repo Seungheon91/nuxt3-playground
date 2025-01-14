@@ -60,66 +60,8 @@ const menu = ref<Array<Menu>>([
     ],
   },
 ])
-
-const getIconComponent = (icon: string) => {
-  const iconComponent = resolveComponent(icon)
-  return iconComponent
-}
 </script>
 
 <template>
-  <el-menu class="sidebar" :collapse="isCollapse">
-    <div
-      class="sidebar__icon"
-      :class="isCollapse ? 'sidebar__icon--collapse' : 'sidebar__icon--expand'"
-    >
-      <el-icon
-        v-if="!isCollapse"
-        @click="isCollapse = true"
-        color="black"
-        :size="20"
-      >
-        <Fold />
-      </el-icon>
-      <el-icon v-else @click="isCollapse = false" color="black" :size="20">
-        <Expand />
-      </el-icon>
-    </div>
-
-    <template v-for="item in menu">
-      <el-sub-menu
-        v-if="item.children.length > 0 && item.icon"
-        :index="item.index"
-      >
-        <template #title>
-          <el-icon :color="iconColor" :size="iconSize">
-            <component :is="getIconComponent(item.icon ?? '')" />
-          </el-icon>
-          <span>{{ item.title }}</span>
-        </template>
-
-        <el-menu-item
-          v-for="child in item.children"
-          :index="child.index"
-          @click="$router.push(child.url)"
-        >
-          <el-icon v-if="child.icon" :color="iconColor" :size="iconSize">
-            <component :is="getIconComponent(child.icon ?? '')" />
-          </el-icon>
-          {{ child.title }}
-        </el-menu-item>
-      </el-sub-menu>
-
-      <el-menu-item v-else :index="item.index" @click="$router.push(item.url)">
-        <el-icon :color="iconColor" :size="iconSize">
-          <component :is="getIconComponent(item.icon ?? '')" />
-        </el-icon>
-        <template #title>
-          <span>{{ item.title }}</span>
-        </template>
-      </el-menu-item>
-
-      <el-divider v-if="item.index === '3'" />
-    </template>
-  </el-menu>
+  <div>gg</div>
 </template>
