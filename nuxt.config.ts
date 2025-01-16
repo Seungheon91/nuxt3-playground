@@ -10,5 +10,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE_URL || 'http://localhost:3000',
+    },
+  },
   compatibilityDate: '2024-07-12',
 })

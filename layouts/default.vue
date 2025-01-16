@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex h-full flex-col">
+  <div class="flex h-screen flex-col">
     <Header />
-    <div class="flex flex-1 overflow-hidden">
+    <div class="flex flex-1">
       <Aside />
       <main class="">
         <slot />

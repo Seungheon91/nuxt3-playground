@@ -4,16 +4,16 @@
   <header
     class="flex items-center justify-between bg-black px-4 py-4 text-white"
   >
-    <div class="">Logo</div>
+    <div class=""></div>
     <ul class="flex items-center gap-2">
       <li class="">
-        <span>이력</span>
+        <span></span>
       </li>
       <li class="">
-        <span>민원</span>
+        <span></span>
       </li>
       <li class="">
-        <span>알림</span>
+        <span></span>
       </li>
     </ul>
   </header>
