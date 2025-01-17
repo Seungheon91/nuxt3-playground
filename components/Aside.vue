@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { BeakerIcon, HomeModernIcon } from '@heroicons/vue/24/outline'
+import { BeakerIcon, HomeIcon, DocumentTextIcon } from '@heroicons/vue/24/solid'
 import type { Component } from 'vue'
 
 interface Menu {
   title: string
   icon: Component
   url: string
-  subMenuList: Array<{ title: string; icon?: Component; url: string }>
+  subMenuList?: Array<{ title: string; icon?: Component; url: string }>
 }
 
 const isCollapse = ref<boolean>(false)
@@ -14,79 +14,57 @@ const iconColor = ref<string>('black')
 const iconSize = ref<number>(18)
 const menuList = ref<Array<Menu>>([
   {
-    title: '홈',
-    icon: HomeModernIcon,
+    title: 'HOME',
+    icon: HomeIcon,
     url: '/',
-    subMenuList: [],
   },
   {
-    title: '정보게시판',
+    title: 'RESUME',
+    icon: DocumentTextIcon,
+    url: '/resume',
+  },
+  {
+    title: 'SKILL',
     icon: BeakerIcon,
-    url: '/',
-    subMenuList: [
-      { title: '문의 게시판', url: '/boards/inquiry' },
-      { title: '공지사항 게시판', url: '/boards/notice' },
-      { title: '민원 게시판', url: '/boards/complain' },
-      {
-        title: '개인정보 이력 게시판',
-        url: '/boards/personal-history',
-      },
-    ],
+    url: '/skill',
+    subMenuList: [{ title: 'File', url: '/skill/file' }],
   },
   {
-    title: '부가서비스',
-    icon: BeakerIcon,
-    url: '/',
-    subMenuList: [
-      { title: 'Xp 통화매니저', url: '/' },
-      { title: 'Xp 보이스', url: '/' },
-      { title: '장기수선계획', url: '/' },
-      { title: 'NEW아파트뱅크', url: '/' },
-    ],
-  },
-
-  {
-    title: '실험실',
+    title: 'EXPERIMENT',
     url: '/exper',
     icon: BeakerIcon,
-    subMenuList: [
-      { title: 'XpERP', icon: BeakerIcon, url: '/' },
-      { title: '장기수선계획', icon: BeakerIcon, url: '/' },
-      { title: 'Xp 전자결재', icon: BeakerIcon, url: '/' },
-      { title: '관리자 사이트', icon: BeakerIcon, url: '/' },
-    ],
   },
 ])
 </script>
 
 <template>
-  <div class="h-full w-72 p-4">
+  <div class="h-full w-64 p-4">
     <div class="h-full rounded-lg border border-gray-100 bg-white shadow-md">
-      <ul class="p-6">
+      <ul class="p-6 text-sm">
         <li
+          class="py-2"
           v-for="(menu, index) in menuList"
           :key="index"
           @click="$router.push(menu.url)"
         >
           <div class="flex cursor-pointer items-center gap-2 p-2">
-            <component :is="menu.icon" class="h-4 w-4" />
+            <component :is="menu.icon" class="size-4 text-slate-700" />
             {{ menu.title }}
           </div>
 
           <!-- sub menu -->
-          <ul v-if="menu.subMenuList.length > 0" class="text-sm">
+          <ul v-if="menu.subMenuList && menu.subMenuList.length > 0">
             <li
               class="cursor-pointer rounded-md p-1 hover:bg-gray-100"
               v-for="(subMenu, index) in menu.subMenuList"
               :key="index"
               @click="$router.push(subMenu.url)"
             >
-              <div class="ml-8">
+              <div class="ml-7">
                 {{ subMenu.title }}
               </div>
             </li>
           </ul>
-          <hr v-if="index !== menuList.length - 1" class="my-4" />
         </li>
       </ul>
     </div>
